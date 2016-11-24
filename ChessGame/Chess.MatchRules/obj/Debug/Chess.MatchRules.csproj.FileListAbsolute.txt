@@ -1,9 +1,0 @@
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\bin\Debug\Chess.MatchRules.dll
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\bin\Debug\Chess.MatchRules.pdb
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\bin\Debug\Chess.Model.dll
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\bin\Debug\ChessGame.exe
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\bin\Debug\Chess.Model.pdb
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\bin\Debug\ChessGame.pdb
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\obj\Debug\Chess.MatchRules.csprojResolveAssemblyReference.cache
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\obj\Debug\Chess.MatchRules.dll
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.MatchRules\obj\Debug\Chess.MatchRules.pdb
