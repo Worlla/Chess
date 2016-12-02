@@ -9,128 +9,52 @@ namespace Chess.Model
     /// <summary>
     /// King piece
     /// </summary>
-    public class King
+    public class King : Piece
     {
-        /// <summary>
-        /// King features
-        /// </summary>
-
-        #region Private members
-
-        private string name;
-        private bool ismoveallowed;
-        private ChessGame.Chessboard chessboard;
-        
-        private int XInitialCoordinate;
-        private int YInitialCoordinate;
-        private int XFinalCoordniate;
-        private int YFinalCoordinate;
-
-        #endregion
-
         /// <summary>
         /// Initialize the King piece
         /// </summary>
 
         #region Public members
 
-        public King()
-        {
-            chessboard = new ChessGame.Chessboard();
-            
-            XInitialCoordinate = new int();
-            YInitialCoordinate = new int();
-            XFinalCoordniate = new int();
-            YFinalCoordinate = new int();
-        }
+        public King() { }
 
+        public King(string Name, int xActualCoordinate, int yActualCoordinate) : base(Name, xActualCoordinate, yActualCoordinate)
+        {
+            this.Name = Name;
+            this.xActualCoordinate = xActualCoordinate;
+            this.yActualCoordinate = yActualCoordinate;
+        }
+        
         /// <summary>
         /// Check is the king move is regular
         /// </summary>
-        public void ismoveAllowed(int xInitialCoordinate, int yInitialCoordinate, int xFinalCoordinate, int yFinalCoordinate, string[,] Board)
-        {
-            ismoveallowed = false;
 
-            while (!ismoveallowed)
+        public void ismoveAllowed(int xInitialCoordinate, int yInitialCoordinate, int xFinalCoordinate, int yFinalCoordinate, object[,] Board)
+        {
+            isMoveAllowed = false;
+
+            while (!isMoveAllowed)
             {
                 if (xFinalCoordinate == xInitialCoordinate && yFinalCoordinate == (yInitialCoordinate + 2) || xFinalCoordinate == xInitialCoordinate && yFinalCoordinate == (yInitialCoordinate - 2))
                 {
-                    ismoveallowed = true;
+                    xActualCoordinate = xFinalCoordinate;
+                    yActualCoordinate = yFinalCoordinate;
+                    isMoveAllowed = true;
                 }
                 else if (xFinalCoordinate == (xInitialCoordinate + 2) && yFinalCoordinate == yInitialCoordinate || xFinalCoordinate == (xInitialCoordinate - 2) && yFinalCoordinate == yInitialCoordinate)
                 {
-                    ismoveallowed = true;
+                    xActualCoordinate = xFinalCoordinate;
+                    yActualCoordinate = yFinalCoordinate;
+                    isMoveAllowed = true;
                 }
                 else
                 {
                     Console.WriteLine("Irregular move!");
-                    ismoveallowed = false;
+                    xActualCoordinate = xInitialCoordinate;
+                    yActualCoordinate = yInitialCoordinate;
+                    isMoveAllowed = false;
                 }
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
-            }
-        }
-
-        public int xInitialCoordinate
-        {
-            get
-            {
-                return XInitialCoordinate;
-            }
-
-            set
-            {
-                XInitialCoordinate = value;
-            }
-        }
-
-        public int yInitialCoordinate
-        {
-            get
-            {
-                return YInitialCoordinate;
-            }
-
-            set
-            {
-                YInitialCoordinate = value;
-            }
-        }
-
-        public int xFinalCoordinate
-        {
-            get
-            {
-                return XFinalCoordniate;
-            }
-
-            set
-            {
-                XFinalCoordniate = value;
-            }
-        }
-
-        public int yFinalCoordinate
-        {
-            get
-            {
-                return YFinalCoordinate;
-            }
-
-            set
-            {
-                YFinalCoordinate = value;
             }
         }
 

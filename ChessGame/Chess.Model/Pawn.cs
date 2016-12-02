@@ -9,84 +9,80 @@ namespace Chess.Model
     /// <summary>
     /// Pawn piece
     /// </summary>
-    public class Pawn
+    public class Pawn : Piece
     {
-        /// <summary>
-        /// Pawn features
-        /// </summary>
-        #region Private members
-
-        private string name;
-        private bool ismoveallowed;
-        private ChessGame.Chessboard chessboard;
-        
-        private int startingPosition;
-        private int XInitialCoordinate;
-        private int YInitialCoordinate;
-        private int XFinalCoordniate;
-        private int YFinalCoordinate;
-
-        #endregion
-
         #region Public members
 
         /// <summary>
         /// Initialize the pawn piece
         /// </summary>
-        public Pawn()
-        {
-            chessboard = new ChessGame.Chessboard();
-            
-            startingPosition = new int();
-            XInitialCoordinate = new int();
-            YInitialCoordinate = new int();
-            XFinalCoordniate = new int();
-            YFinalCoordinate = new int();
-        }
 
+        public Pawn() { }
+
+        public Pawn(string Name, int xActualCoordinate, int yActualCoordinate) : base(Name, xActualCoordinate, yActualCoordinate)
+        {
+            this.Name = Name;
+            this.xActualCoordinate = xActualCoordinate;
+            this.yActualCoordinate = yActualCoordinate;
+        }
+        
         /// <summary>
         /// Check if the pawn move is regular
         /// </summary>
-        public void ismoveAllowed(int xInitialCoordinate, int yInitialCoordinate, int xFinalCoordinate, int yFinalCoordinate, int StartingPosition, string[,] Board)
-        {
-            ismoveallowed = false;
 
-            while (!ismoveallowed)
+        public void ismoveAllowed(int xInitialCoordinate, int yInitialCoordinate, int xFinalCoordinate, int yFinalCoordinate, int StartingPosition, object[,] Board, string[,] strBoard, int xActualCoordinate, int yActualCoordinate)
+        {
+            isMoveAllowed = false;
+
+            while (!isMoveAllowed)
             {
                 //White Pawn move
                 if (StartingPosition == 13)
                 {
-                    if (xInitialCoordinate != chessboard.Board.GetLength(0) - 4 && yFinalCoordinate - yInitialCoordinate == 0)
+                    if (xInitialCoordinate != Board.GetLength(0) - 4 && yFinalCoordinate - yInitialCoordinate == 0)
                     {
-                        if (xInitialCoordinate - xFinalCoordinate == 2 && chessboard.Board[xFinalCoordinate + 1, yFinalCoordinate] == "   " && chessboard.Board[XFinalCoordniate, YFinalCoordinate] == "   ")
+                        if (xInitialCoordinate - xFinalCoordinate == 2 && Board[xFinalCoordinate + 1, yFinalCoordinate].ToString() == "   " && Board[xFinalCoordinate, yFinalCoordinate].ToString() == "   ")
                         {
-                            ismoveallowed = true;
+                            xActualCoordinate = xFinalCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            isMoveAllowed = true;
                         }
                         else
                         {
                             Console.WriteLine("Irregular move, the destination cell must be empty!");
-                            ismoveallowed = false;
-                        }
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yInitialCoordinate;
+                            break;                        }
                     }
-                    else if (xInitialCoordinate == chessboard.Board.GetLength(0) - 4)
+                    else if (xInitialCoordinate == Board.GetLength(0) - 4)
                     {
-                        if (xInitialCoordinate - xFinalCoordinate == 4 && yFinalCoordinate - yInitialCoordinate == 0 && chessboard.Board[xFinalCoordinate + 2, yFinalCoordinate] == "   " && chessboard.Board[xFinalCoordinate, yFinalCoordinate] == "   " || xInitialCoordinate - xFinalCoordinate == 2 && yFinalCoordinate - yInitialCoordinate == 0 && chessboard.Board[xFinalCoordinate + 1, yFinalCoordinate] == "   " && chessboard.Board[xFinalCoordinate, yFinalCoordinate] == "   ")
-                            ismoveallowed = true;
+                        if (xInitialCoordinate - xFinalCoordinate == 4 && yFinalCoordinate - yInitialCoordinate == 0 && Board[xFinalCoordinate + 2, yFinalCoordinate].ToString() == "   " && Board[xFinalCoordinate, yFinalCoordinate].ToString() == "   " || xInitialCoordinate - xFinalCoordinate == 2 && yFinalCoordinate - yInitialCoordinate == 0 && Board[xFinalCoordinate + 1, yFinalCoordinate].ToString() == "   " && Board[xFinalCoordinate, yFinalCoordinate].ToString() == "   ")
+                        {
+                            xActualCoordinate = xFinalCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            isMoveAllowed = true;
+                        }
                         else
                         {
                             Console.WriteLine("Irregular move!");
-                            ismoveallowed = false;
-                        }
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yInitialCoordinate;
+                            break;                        }
                     }
-                    else if (xInitialCoordinate != chessboard.Board.GetLength(0) - 4 && yFinalCoordinate - yInitialCoordinate != 0)
+                    else if (xInitialCoordinate != Board.GetLength(0) - 4 && yFinalCoordinate - yInitialCoordinate != 0)
                     {
-                        if (xInitialCoordinate - xFinalCoordinate == 2 && yFinalCoordinate - yInitialCoordinate == 2 && chessboard.Board[xFinalCoordinate + 1, yFinalCoordinate] == "   " && chessboard.Board[xFinalCoordinate, yFinalCoordinate] != "   ")
-                            ismoveallowed = true;
+                        if (xInitialCoordinate - xFinalCoordinate == 2 && yFinalCoordinate - yInitialCoordinate == 2 && Board[xFinalCoordinate + 1, yFinalCoordinate].ToString() == "   " && Board[xFinalCoordinate, yFinalCoordinate].ToString() != "   ")
+                        {
+                            xActualCoordinate = xFinalCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            isMoveAllowed = true;
+                        }
                         else
                         {
                             Console.WriteLine("Irregular move, there's no opponent's piece to assault");
-                            ismoveallowed = false;
-                        }
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yInitialCoordinate;
+                            break;                        }
                     }
                 }
 
@@ -95,34 +91,48 @@ namespace Chess.Model
                 {
                     if (xInitialCoordinate != 3 && yFinalCoordinate - yInitialCoordinate == 0)
                     {
-                        if (xFinalCoordinate - xInitialCoordinate == 2 && chessboard.Board[xFinalCoordinate - 1, yFinalCoordinate] == "   " && chessboard.Board[xFinalCoordinate, yFinalCoordinate] == "   ")
+                        if (xFinalCoordinate - xInitialCoordinate == 2 && Board[xFinalCoordinate - 1, yFinalCoordinate].ToString() == "   " && Board[xFinalCoordinate, yFinalCoordinate].ToString() == "   ")
                         {
-                            ismoveallowed = true;
+                            xActualCoordinate = xFinalCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            isMoveAllowed = true;
                         }
                         else
                         {
                             Console.WriteLine("Irregular move, the destination cell must be empty!");
-                            ismoveallowed = false;
-                        }
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yInitialCoordinate;
+                            break;                        }
                     }
                     else if (xInitialCoordinate == 3)
                     {
-                        if (xFinalCoordinate - xInitialCoordinate == 4 && yFinalCoordinate - yInitialCoordinate == 0 && chessboard.Board[xFinalCoordinate - 2, yFinalCoordinate] == "   " && chessboard.Board[xFinalCoordinate, yFinalCoordinate] == "   " || xFinalCoordinate - xInitialCoordinate == 2 && yFinalCoordinate - yInitialCoordinate == 0 && chessboard.Board[xFinalCoordinate - 1, yFinalCoordinate] == "   " && chessboard.Board[xFinalCoordinate, yFinalCoordinate] == "   ")
-                            ismoveallowed = true;
+                        if (xFinalCoordinate - xInitialCoordinate == 4 && yFinalCoordinate - yInitialCoordinate == 0 && Board[xFinalCoordinate - 2, yFinalCoordinate].ToString() == "   " && Board[xFinalCoordinate, yFinalCoordinate].ToString() == "   " || xFinalCoordinate - xInitialCoordinate == 2 && yFinalCoordinate - yInitialCoordinate == 0 && Board[xFinalCoordinate - 1, yFinalCoordinate].ToString() == "   " && Board[xFinalCoordinate, yFinalCoordinate].ToString() == "   ")
+                        {
+                            xActualCoordinate = xFinalCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            isMoveAllowed = true;
+                        }
                         else
                         {
                             Console.WriteLine("Irregular move!");
-                            ismoveallowed = false;
-                        }
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yInitialCoordinate;
+                            break;                        }
                     }
-                    else if (xInitialCoordinate != chessboard.Board.GetLength(0) - 4 && yFinalCoordinate - yInitialCoordinate != 0)
+                    else if (xInitialCoordinate != Board.GetLength(0) - 4 && yFinalCoordinate - yInitialCoordinate != 0)
                     {
-                        if (xFinalCoordinate - xInitialCoordinate == 2 && yFinalCoordinate - yInitialCoordinate == 2 && chessboard.Board[xFinalCoordinate - 1, yFinalCoordinate] == "   " && chessboard.Board[xFinalCoordinate, yFinalCoordinate] != "   ")
-                            ismoveallowed = true;
+                        if (xFinalCoordinate - xInitialCoordinate == 2 && yFinalCoordinate - yInitialCoordinate == 2 && Board[xFinalCoordinate - 1, yFinalCoordinate].ToString() == "   " && Board[xFinalCoordinate, yFinalCoordinate].ToString() != "   ")
+                        {
+                            xActualCoordinate = xFinalCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            isMoveAllowed = true;
+                        }
                         else
                         {
                             Console.WriteLine("Irregular move, there's no opponent's piece to assault");
-                            ismoveallowed = false;
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yInitialCoordinate;
+                            break;
                         }
                     }
                 }
@@ -131,87 +141,8 @@ namespace Chess.Model
                 else
                 {
                     Console.WriteLine("Irregular starting position coordinate");
-                    ismoveallowed = false;
+                    break;
                 }
-            }
-        }
-
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
-            }
-        }
-
-        public int xInitialCoordinate
-        {
-            get
-            {
-                return XInitialCoordinate;
-            }
-
-            set
-            {
-                XInitialCoordinate = value;
-            }
-        }
-
-        public int yInitialCoordinate
-        {
-            get
-            {
-                return YInitialCoordinate;
-            }
-
-            set
-            {
-                YInitialCoordinate = value;
-            }
-        }
-
-        public int xFinalCoordinate
-        {
-            get
-            {
-                return XFinalCoordniate;
-            }
-
-            set
-            {
-                XFinalCoordniate = value;
-            }
-        }
-
-        public int yFinalCoordinate
-        {
-            get
-            {
-                return YFinalCoordinate;
-            }
-
-            set
-            {
-                YFinalCoordinate = value;
-            }
-        }
-
-        public int StartingPosition
-        {
-            get
-            {
-                return startingPosition;
-            }
-
-            set
-            {
-                startingPosition = value;
             }
         }
 

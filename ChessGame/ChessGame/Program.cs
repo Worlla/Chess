@@ -10,12 +10,8 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
-            Chessboard chessboard = new Chessboard();
-
-            chessboard.Draw();
-
             Chess.MatchRules.Game game = new Chess.MatchRules.Game();
-
+            
             bool match = false;
 
             do

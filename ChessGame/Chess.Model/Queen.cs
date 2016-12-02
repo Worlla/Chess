@@ -9,49 +9,34 @@ namespace Chess.Model
     /// <summary>
     /// Queen piece
     /// </summary>
-    public class Queen
+    public class Queen : Piece
     {
-        /// <summary>
-        /// Queen features
-        /// </summary>
-
-        #region Private members
-
-        private string name;
-        private bool ismoveallowed;
-
-        private ChessGame.Chessboard chessboard;
-        
-        private int XInitialCoordinate;
-        private int YInitialCoordinate;
-        private int XFinalCoordniate;
-        private int YFinalCoordinate;
-
-        #endregion
-
         /// <summary>
         /// Initialize the Queen piece
         /// </summary>
 
         #region Public members
 
-        public Queen()
-        {
-            chessboard = new ChessGame.Chessboard();
-            
-            XInitialCoordinate = new int();
-            YInitialCoordinate = new int();
-            XFinalCoordniate = new int();
-            YFinalCoordinate = new int();
-        }
+        public Queen() { }
 
-        public void ismoveAllowed(int xInitialCoordinate, int yInitialCoordinate, int xFinalCoordinate, int yFinalCoordinate, string[,] Board)
+        public Queen(string Name, int xActualCoordinate, int yActualCoordinate) : base(Name, xActualCoordinate, yActualCoordinate)
         {
-            ismoveallowed = false;
+            this.Name = Name;
+            this.xActualCoordinate = xActualCoordinate;
+            this.yActualCoordinate = yActualCoordinate;
+        }
+        
+        /// <summary>
+        /// Check if the pawn move is regular
+        /// </summary>
+
+        public void ismoveAllowed(int xInitialCoordinate, int yInitialCoordinate, int xFinalCoordinate, int yFinalCoordinate, object[,] Board)
+        {
+            isMoveAllowed = false;
             int tempX = xInitialCoordinate;
             int tempY = yInitialCoordinate;
 
-            while (!ismoveallowed)
+            while (!isMoveAllowed)
             {
                 //North-East diagonal move
                 if (xFinalCoordinate < xInitialCoordinate && yFinalCoordinate > yInitialCoordinate)
@@ -61,13 +46,19 @@ namespace Chess.Model
 
                     if (tempX > xFinalCoordinate && tempY < yFinalCoordinate)
                     {
-                        if (Board[tempX, tempY] != "   " && Board[tempX, tempY] != " | " && Board[tempX, tempY] != " - ")
-                            ismoveallowed = false;
+                        if (Board[tempX, tempY].ToString() != "   " && Board[tempX, tempY].ToString() != " | " && Board[tempX, tempY].ToString() != " - ")
+                            {
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            break;
+                        }
                     }
 
                     else if (tempX == xFinalCoordinate && tempY == yFinalCoordinate)
                     {
-                        ismoveallowed = true;
+                        xActualCoordinate = xFinalCoordinate;
+                        yActualCoordinate = yFinalCoordinate;
+                        isMoveAllowed = true;
                     }
                 }
 
@@ -79,13 +70,19 @@ namespace Chess.Model
 
                     if (tempX > xFinalCoordinate && tempY > yFinalCoordinate)
                     {
-                        if (Board[tempX, tempY] != "   " && Board[tempX, tempY] != " | " && Board[tempX, tempY] != " - ")
-                            ismoveallowed = false;
+                        if (Board[tempX, tempY].ToString() != "   " && Board[tempX, tempY].ToString() != " | " && Board[tempX, tempY].ToString() != " - ")
+                        {
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            break;
+                        }
                     }
 
                     else if (tempX == xFinalCoordinate && tempY == yFinalCoordinate)
                     {
-                        ismoveallowed = true;
+                        xActualCoordinate = xFinalCoordinate;
+                        yActualCoordinate = yFinalCoordinate;
+                        isMoveAllowed = true;
                     }
                 }
 
@@ -97,13 +94,19 @@ namespace Chess.Model
 
                     if (tempX < xFinalCoordinate && tempY < yFinalCoordinate)
                     {
-                        if (Board[tempX, tempY] != "   " && Board[tempX, tempY] != " | " && Board[tempX, tempY] != " - ")
-                            ismoveallowed = false;
+                        if (Board[tempX, tempY].ToString() != "   " && Board[tempX, tempY].ToString() != " | " && Board[tempX, tempY].ToString() != " - ")
+                        {
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            break;
+                        }
                     }
 
                     else if (tempX == xFinalCoordinate && tempY == yFinalCoordinate)
                     {
-                        ismoveallowed = true;
+                        xActualCoordinate = xFinalCoordinate;
+                        yActualCoordinate = yFinalCoordinate;
+                        isMoveAllowed = true;
                     }
                 }
 
@@ -115,13 +118,19 @@ namespace Chess.Model
 
                     if (tempX < xFinalCoordinate && tempY > yFinalCoordinate)
                     {
-                        if (Board[tempX, tempY] != "   " && Board[tempX, tempY] != " | " && Board[tempX, tempY] != " - ")
-                            ismoveallowed = false;
+                        if (Board[tempX, tempY].ToString() != "   " && Board[tempX, tempY].ToString() != " | " && Board[tempX, tempY].ToString() != " - ")
+                        {
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            break;
+                        }
                     }
 
                     else if (tempX == xFinalCoordinate && tempY == yFinalCoordinate)
                     {
-                        ismoveallowed = true;
+                        xActualCoordinate = xFinalCoordinate;
+                        yActualCoordinate = yFinalCoordinate;
+                        isMoveAllowed = true;
                     }
                 }
 
@@ -132,13 +141,19 @@ namespace Chess.Model
 
                     if (tempX > xFinalCoordinate)
                     {
-                        if (Board[tempX, tempY] != "   " && Board[tempX, tempY] != " | " && Board[tempX, tempY] != " - ")
-                            ismoveallowed = false;
+                        if (Board[tempX, tempY].ToString() != "   " && Board[tempX, tempY].ToString() != " | " && Board[tempX, tempY].ToString() != " - ")
+                        {
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            break;
+                        }
                     }
 
                     else if (tempX == xFinalCoordinate && tempY == yFinalCoordinate)
                     {
-                        ismoveallowed = true;
+                        xActualCoordinate = xFinalCoordinate;
+                        yActualCoordinate = yFinalCoordinate;
+                        isMoveAllowed = true;
                     }
                 }
 
@@ -149,13 +164,19 @@ namespace Chess.Model
 
                     if (tempX < xFinalCoordinate)
                     {
-                        if (Board[tempX, tempY] != "   " && Board[tempX, tempY] != " | " && Board[tempX, tempY] != " - ")
-                            ismoveallowed = false;
+                        if (Board[tempX, tempY].ToString() != "   " && Board[tempX, tempY].ToString() != " | " && Board[tempX, tempY].ToString() != " - ")
+                        {
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            break;
+                        }
                     }
 
                     else if (tempX == xFinalCoordinate && tempY == yFinalCoordinate)
                     {
-                        ismoveallowed = true;
+                        xActualCoordinate = xFinalCoordinate;
+                        yActualCoordinate = yFinalCoordinate;
+                        isMoveAllowed = true;
                     }
                 }
 
@@ -166,13 +187,19 @@ namespace Chess.Model
 
                     if (tempY < yFinalCoordinate)
                     {
-                        if (Board[tempX, tempY] != "   " && Board[tempX, tempY] != " | " && Board[tempX, tempY] != " - ")
-                            ismoveallowed = false;
+                        if (Board[tempX, tempY].ToString() != "   " && Board[tempX, tempY].ToString() != " | " && Board[tempX, tempY].ToString() != " - ")
+                        {
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            break;
+                        }
                     }
 
                     else if (tempX == xFinalCoordinate && tempY == yFinalCoordinate)
                     {
-                        ismoveallowed = true;
+                        xActualCoordinate = xFinalCoordinate;
+                        yActualCoordinate = yFinalCoordinate;
+                        isMoveAllowed = true;
                     }
                 }
 
@@ -183,86 +210,27 @@ namespace Chess.Model
 
                     if (tempY > yFinalCoordinate)
                     {
-                        if (Board[tempX, tempY] != "   " && Board[tempX, tempY] != " | " && Board[tempX, tempY] != " - ")
-                            ismoveallowed = false;
+                        if (Board[tempX, tempY].ToString() != "   " && Board[tempX, tempY].ToString() != " | " && Board[tempX, tempY].ToString() != " - ")
+                        {
+                            xActualCoordinate = xInitialCoordinate;
+                            yActualCoordinate = yFinalCoordinate;
+                            break;
+                        }
                     }
 
                     else if (tempX == xFinalCoordinate && tempY == yFinalCoordinate)
                     {
-                        ismoveallowed = true;
+                        xActualCoordinate = xFinalCoordinate;
+                        yActualCoordinate = yFinalCoordinate;
+                        isMoveAllowed = true;
                     }
                 }
 
                 else
                 {
                     Console.WriteLine("Irregular move");
-                    ismoveallowed = false;
+                    isMoveAllowed = false;
                 }
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
-            }
-        }
-
-        public int xInitialCoordinate
-        {
-            get
-            {
-                return XInitialCoordinate;
-            }
-
-            set
-            {
-                XInitialCoordinate = value;
-            }
-        }
-
-        public int yInitialCoordinate
-        {
-            get
-            {
-                return YInitialCoordinate;
-            }
-
-            set
-            {
-                YInitialCoordinate = value;
-            }
-        }
-
-        public int xFinalCoordinate
-        {
-            get
-            {
-                return XFinalCoordniate;
-            }
-
-            set
-            {
-                XFinalCoordniate = value;
-            }
-        }
-
-        public int yFinalCoordinate
-        {
-            get
-            {
-                return YFinalCoordinate;
-            }
-
-            set
-            {
-                YFinalCoordinate = value;
             }
         }
 

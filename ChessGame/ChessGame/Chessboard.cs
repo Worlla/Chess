@@ -17,7 +17,9 @@ namespace ChessGame
         /// <summary>
         /// Private members: chessboard matrix, X and Y dimension of it.
         /// </summary>
-        private string[,] board;
+        private object[,] board;
+
+        private string[,] strBoard;
 
         private int boardX;
 
@@ -30,7 +32,7 @@ namespace ChessGame
         private string verticalCellBorder;
 
         private string horizontalCellBorder;
-
+        
         #endregion
 
         #region Public members
@@ -44,8 +46,8 @@ namespace ChessGame
             {
                 boardX = ConfigurationHelper.GetBoardXValue();
                 boardY = ConfigurationHelper.GetBoardYValue();
-                board = new string[boardX, boardY];
-
+                board = new object[boardX, boardY];
+                strBoard = new string[boardX, boardY];
                 numberCoordinate = 8;
 
                 letters = new Dictionary<int, string>();
@@ -71,6 +73,10 @@ namespace ChessGame
                         {
                             board[i, j] = " " + numberCoordinate.ToString() + "|";
                             board[i, board.GetLength(1) - 1] = "|" + numberCoordinate.ToString() + " ";
+
+                            strBoard[i, j] = " " + numberCoordinate.ToString() + "|";
+                            strBoard[i, board.GetLength(1) - 1] = "|" + numberCoordinate.ToString() + " ";
+
                             numberCoordinate--;
                         }
                         //Write letters on the top and bottom of the chessboard
@@ -78,80 +84,131 @@ namespace ChessGame
                         {
                             board[i, j] = " " + (letters[j]) + " ";
                             board[(board.GetLength(0) - 1), j] = " " + (letters[j]) + " ";
+
+                            strBoard[i, j] = " " + (letters[j]) + " ";
+                            strBoard[(board.GetLength(0) - 1), j] = " " + (letters[j]) + " ";
                         }
                         //Add borders to empty cells
                         if (i > 0 && i < board.GetLength(0) - 1 && j > 0 && j < board.GetLength(1) - 1 && j % 2 == 0 && i % 2 !=0)
                         {
                             board[i, j] = (verticalCellBorder);
+
+                            strBoard[i, j] = (verticalCellBorder);
                         }
                         if (i > 0 && i < board.GetLength(0) - 1 && j > 0 && j < board.GetLength(1) - 1 && j % 2 == 0 && i % 2 == 0)
                         {
                             board[i, j] = (horizontalCellBorder);
+
+                            strBoard[i, j] = (horizontalCellBorder);
                         }
                         //Place black and white pawns on the chessboard
                         if (i == 3 && j > 0 && j < board.GetLength(1) - 1 && j % 2 != 0)
                         {
-                            board[i, j] = ("BPa");//Stands for Black Pawn
+                            Chess.Model.Pawn Pawn = new Chess.Model.Pawn("BPa", i, j);
+                            board[i, j] = Pawn;//Stands for Black Pawn
+
+                            strBoard[i, j] = Pawn.Name;
                         }
                         if (i == 13 && j > 0 && j < board.GetLength(1) - 1 && j % 2 != 0)
                         {
-                            board[i, j] = ("WPa");//Stands for White Pawn
+                            Chess.Model.Pawn Pawn = new Chess.Model.Pawn("WPa", i, j);
+                            board[i, j] = Pawn;//Stands for White Pawn
+
+                            strBoard[i, j] = Pawn.Name;
                         }
                         //Fill with spaces null cells, in order to allign the matrix
                         if (board[i,j] == null)
                         {
                             board[i, j] = "   ";
+
+                            strBoard[i, j] = "   ";
                         }
                         //Place black and white rooks on the chessboard
                         if (i == 1 && j== 1)
                         {
-                            board[i, j] = ("BRo");//Stands for Black Rook
-                            board[i, j + 14] = ("Bro");
+                            Chess.Model.Rook Rook = new Chess.Model.Rook("BRo", i, j);
+                            board[i, j] = Rook;//Stands for Black Rook
+                            board[i, j + 14] = Rook;
+
+                            strBoard[i, j] = Rook.Name;
+                            strBoard[i, j + 14] = Rook.Name;
                         }
                         if (i == 15 && j == 1)
                         {
-                            board[i, j] = ("WRo");//Stands for White Rook
-                            board[i, j + 14] = ("Wro");
+                            Chess.Model.Rook Rook = new Chess.Model.Rook("WRo", i, j);
+                            board[i, j] = Rook;//Stands for White Rook
+                            board[i, j + 14] = Rook;
+
+                            strBoard[i, j] = Rook.Name;
+                            strBoard[i, j + 14] = Rook.Name;
                         }
                         //Place black and white knights on the chessboard
                         if (i == 1 && j == 3)
                         {
-                            board[i, j] = ("BKn");//Stands for Black Knight
-                            board[i, j + 10] = ("BKn");
+                            Chess.Model.Knight Knight = new Chess.Model.Knight("BKn", i, j);
+                            board[i, j] = Knight;//Stands for Black Knight
+                            board[i, j + 10] = Knight;
+
+                            strBoard[i, j] = Knight.Name;
+                            strBoard[i, j + 10] = Knight.Name;
                         }
                         if (i == 15 && j == 3)
                         {
-                            board[i, j] = ("WKn");//Stands for White Knight
-                            board[i, j + 10] = ("WKn");
+                            Chess.Model.Knight Knight = new Chess.Model.Knight("WKn", i, j);
+                            board[i, j] = Knight;//Stands for White Knight
+                            board[i, j + 10] = Knight;
+
+                            strBoard[i, j] = Knight.Name;
+                            strBoard[i, j + 10] = Knight.Name;
                         }
                         //Place black and white bishops on the chessboard
                         if (i == 1 && j == 5)
                         {
-                            board[i, j] = ("BBi");//Stands for Black Bishop
-                            board[i, j + 6] = ("BBi");
+                            Chess.Model.Bishop Bishop = new Chess.Model.Bishop("BBi", i, j);
+                            board[i, j] =Bishop;//Stands for Black Bishop
+                            board[i, j + 6] = Bishop;
+
+                            strBoard[i, j] = Bishop.Name;
+                            strBoard[i, j + 6] = Bishop.Name;
                         }
                         if (i == 15 && j == 5)
                         {
-                            board[i, j] = ("WBi");//Stands for White Bishop
-                            board[i, j + 6] = ("WBi");
+                            Chess.Model.Bishop Bishop = new Chess.Model.Bishop("WBi", i, j);
+                            board[i, j] = Bishop;//Stands for White Bishop
+                            board[i, j + 6] = Bishop;
+
+                            strBoard[i, j] = Bishop.Name;
+                            strBoard[i, j + 6] = Bishop.Name;
                         }
                         //Place white and black queen on the chessboard
                         if (i == 1 && j == 7)
                         {
-                            board[i, j] = ("BQu");//Stands for Black Queen
+                            Chess.Model.Queen Queen = new Chess.Model.Queen("BQu", i, j);
+                            board[i, j] = Queen;//Stands for Black Queen
+
+                            strBoard[i, j] = Queen.Name;
                         }
                         if (i == 15 && j == 7)
                         {
-                            board[i, j] = ("WQu");//Stands for White Queen
+                            Chess.Model.Queen Queen = new Chess.Model.Queen("WQu", i, j);
+                            board[i, j] = Queen;//Stands for White Queen
+
+                            strBoard[i, j] = Queen.Name;
                         }
                         //Place black and white king on the chessboard
                         if (i == 1 && j == 9)
                         {
-                            board[i, j] = ("BKi");//Stands for Black King
+                            Chess.Model.King King = new Chess.Model.King("BKi", i, j);
+                            board[i, j] = King;//Stands for Black King
+
+                            strBoard[i, j] = King.Name;
                         }
                         if (i == 15 && j == 9)
                         {
-                            board[i, j] = ("WKi");//Stands for White King
+                            Chess.Model.King King = new Chess.Model.King("WKi", i, j);
+                            board[i, j] = King;//Stands for White King
+
+                            strBoard[i, j] = King.Name;
                         }
                     }
                 }
@@ -182,7 +239,22 @@ namespace ChessGame
             Console.ReadLine();
         }
 
-        public string[,] Board
+        public void Tostring()
+        {
+            for (int i = 0; i < strBoard.GetLength(0); i++)
+            {
+                for (int j = 0; j < strBoard.GetLength(1); j++)
+                {
+                    Console.Write(strBoard[i, j] + " ");
+                }
+
+                Console.Write(Environment.NewLine);
+            }
+
+            Console.ReadLine();
+        }
+
+        public object[,] Board
         {
             get
             {
@@ -191,6 +263,18 @@ namespace ChessGame
             set
             {
                 board = value;
+            }
+        }
+
+        public string[,] StrBoard
+        {
+            get
+            {
+                return strBoard;
+            }
+            set
+            {
+                strBoard = value;
             }
         }
 
