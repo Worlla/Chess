@@ -44,7 +44,7 @@ namespace Chess.MatchRules
         {
             // Insert initial coordinates for the pawn line
             chessboard.Tostring();
-
+           
             bool StartingCoordinate = false;
             while (!StartingCoordinate)
             {
@@ -78,7 +78,7 @@ namespace Chess.MatchRules
                 YFinalCoordinate = Convert.ToInt32(Console.ReadLine());
 
                 //Move
-                ((Chess.Model.Piece)chessboard.Board[XInitialCoordinate, YInitialCoordinate]).isMoveAllowed();
+                //((Chess.Model.Piece)chessboard.Board[XInitialCoordinate, YInitialCoordinate]).isMoveAllowed();
                 
                 chessboard.Tostring();
             }

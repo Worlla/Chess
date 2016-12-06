@@ -1,10 +1,9 @@
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\ChessGame.exe.config
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\ChessGame.exe
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\ChessGame.pdb
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\Chess.MatchRules.dll
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\Chess.MatchRules.pdb
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\obj\Debug\ChessGame.exe
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\obj\Debug\ChessGame.pdb
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\Chess.Model.dll
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\Chess.Model.pdb
-C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\obj\Debug\ChessGame.csprojResolveAssemblyReference.cache
+C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\Chess.MatchRules.dll
+C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\ChessGame\bin\Debug\Chess.MatchRules.pdb

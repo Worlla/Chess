@@ -11,7 +11,7 @@ namespace ChessGame
         static void Main(string[] args)
         {
             Chess.MatchRules.Game game = new Chess.MatchRules.Game();
-            
+
             bool match = false;
 
             do
