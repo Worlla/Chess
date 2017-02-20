@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chess.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Chess.MatchRules
         #region Private members
         //Declare necessary items for the match to develop    
         private ChessGame.Chessboard chessboard;
-       
+        
         private int startingCoordinate;
         private int XInitialCoordinate;
         private int YInitialCoordinate;
@@ -32,7 +33,7 @@ namespace Chess.MatchRules
         public Game()
         {
             chessboard = new ChessGame.Chessboard();
-           
+            
             XInitialCoordinate = new int();
             YInitialCoordinate = new int();
             XFinalCoordniate = new int();
@@ -42,9 +43,6 @@ namespace Chess.MatchRules
 
         public bool move()
         {
-            // Insert initial coordinates for the pawn line
-            chessboard.Tostring();
-           
             bool StartingCoordinate = false;
             while (!StartingCoordinate)
             {
@@ -61,10 +59,7 @@ namespace Chess.MatchRules
                 }
                 else StartingCoordinate = true;
             }
-
-            bool initialAndFinalCoordinates = false;
-            while (!initialAndFinalCoordinates)
-            {
+            
                 Console.WriteLine("Enter the X Initial Coordinate of your piece");
                 XInitialCoordinate = Convert.ToInt32(Console.ReadLine());
 
@@ -76,12 +71,9 @@ namespace Chess.MatchRules
 
                 Console.WriteLine("Enter the Y Final Coordinate of your piece");
                 YFinalCoordinate = Convert.ToInt32(Console.ReadLine());
-
-                //Move
-                //((Chess.Model.Piece)chessboard.Board[XInitialCoordinate, YInitialCoordinate]).isMoveAllowed();
-                
-                chessboard.Tostring();
-            }
+            
+            Piece piece =  (Piece)chessboard.Board[XInitialCoordinate, YInitialCoordinate];
+            piece.Move(XFinalCoordniate, YFinalCoordinate);
 
             return false;
         }

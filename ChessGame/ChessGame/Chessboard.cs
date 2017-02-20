@@ -46,8 +46,6 @@ namespace ChessGame
                 boardY = ConfigurationHelper.GetBoardYValue();
                 board = new Chess.Model.Piece[boardX, boardY];
                
-                numberCoordinate = 8;
-
                 letters = new Dictionary<int, string>();
                 letters.Add(1, " a ");
                 letters.Add(3, " b ");
@@ -192,8 +190,7 @@ namespace ChessGame
                 sb.Append(Environment.NewLine);
             }
 
-            string s = sb.ToString();
-            return s;
+            return sb.ToString();
         }
 
         public Chess.Model.Piece[,] Board

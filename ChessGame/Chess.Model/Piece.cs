@@ -75,6 +75,8 @@ namespace Chess.Model
             this.xActualCoordinate = xActualCoordinate;
             this.yActualCoordinate = yActualCoordinate;
         }
+
+        public virtual void Move(int finalX, int finalY) { }
         
         #endregion
     }

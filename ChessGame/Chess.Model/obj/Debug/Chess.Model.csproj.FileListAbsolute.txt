@@ -2,3 +2,8 @@ C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\bin\D
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\bin\Debug\Chess.Model.pdb
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\obj\Debug\Chess.Model.dll
 C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\obj\Debug\Chess.Model.pdb
+C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\bin\Debug\ChessGame.exe
+C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\bin\Debug\Chess.MatchRules.dll
+C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\bin\Debug\ChessGame.pdb
+C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\bin\Debug\Chess.MatchRules.pdb
+C:\Users\haris\Documents\Visual Studio 2015\Projects\ChessGame\Chess.Model\obj\Debug\Chess.Model.csprojResolveAssemblyReference.cache

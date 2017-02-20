@@ -16,7 +16,7 @@ namespace Chess.Model
         /// <summary>
         /// Initialize the pawn piece
         /// </summary>
-
+       
         public Pawn() { }
 
         public Pawn(string Name, int xActualCoordinate, int yActualCoordinate) : base(Name, xActualCoordinate, yActualCoordinate)
@@ -30,7 +30,7 @@ namespace Chess.Model
         /// Check if the pawn move is regular
         /// </summary>
 
-        public void ismoveAllowed(int xInitialCoordinate, int yInitialCoordinate, int xFinalCoordinate, int yFinalCoordinate, int StartingPosition, object[,] Board, string[,] strBoard, int xActualCoordinate, int yActualCoordinate)
+        private void ismoveAllowed(int xInitialCoordinate, int yInitialCoordinate, int xFinalCoordinate, int yFinalCoordinate, int StartingPosition, object[,] Board, string[,] strBoard, int xActualCoordinate, int yActualCoordinate)
         {
             isMoveAllowed = false;
 
@@ -117,7 +117,8 @@ namespace Chess.Model
                             Console.WriteLine("Irregular move!");
                             xActualCoordinate = xInitialCoordinate;
                             yActualCoordinate = yInitialCoordinate;
-                            break;                        }
+                            break;
+                        }
                     }
                     else if (xInitialCoordinate != Board.GetLength(0) - 4 && yFinalCoordinate - yInitialCoordinate != 0)
                     {
@@ -143,6 +144,20 @@ namespace Chess.Model
                     Console.WriteLine("Irregular starting position coordinate");
                     break;
                 }
+            }
+        }
+
+        public override void Move(int finalX, int finalY)
+        {
+            if (isMoveAllowed == true)
+            {
+                xActualCoordinate = finalX;
+                yActualCoordinate = finalY;
+            }
+            else
+            {
+                xActualCoordinate = xActualCoordinate;
+                yActualCoordinate = yActualCoordinate;
             }
         }
 
